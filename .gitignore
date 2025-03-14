@@ -21,3 +21,6 @@ __pycache__/
 
 # Diagramas e arquivos auxiliares
 *.drawio
+
+# Arquivos de teste
+response.json
