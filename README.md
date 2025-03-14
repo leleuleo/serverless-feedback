@@ -6,9 +6,7 @@ Ele provisiona automaticamente API Gateway, AWS Lambda, DynamoDB e SNS para proc
 📁 Estrutura do Projeto
 📌 O código está organizado da seguinte maneira:
 
-bash
-Copiar
-Editar
+
 /serverless-feedback
 │── /infra                # Código Terraform (Infraestrutura como código)
 │   ├── api_gateway.tf    # API Gateway
@@ -34,8 +32,7 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 Se ainda não configurou a AWS CLI, execute:
 
 powershell
-Copiar
-Editar
+
 aws configure
 Isso solicitará suas credenciais da AWS (Access Key e Secret Key).
 
@@ -45,8 +42,7 @@ Antes de executar o Terraform, o usuário terraform precisa ter permissões para
 Caso ainda não tenha configurado as permissões, execute os comandos abaixo no AWS CLI com um usuário que tenha permissões administrativas:
 
 powershell
-Copiar
-Editar
+
 aws iam attach-user-policy --user-name terraform --policy-arn arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator
 aws iam attach-user-policy --user-name terraform --policy-arn arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
 aws iam attach-user-policy --user-name terraform --policy-arn arn:aws:iam::aws:policy/IAMFullAccess
@@ -62,8 +58,7 @@ SNS (para envio de notificações) → AmazonSNSFullAccess
 Se quiser validar as permissões associadas ao usuário terraform, rode:
 
 powershell
-Copiar
-Editar
+
 aws iam list-attached-user-policies --user-name terraform
 Isso mostrará todas as políticas que estão vinculadas ao usuário.
 
@@ -72,15 +67,13 @@ Isso mostrará todas as políticas que estão vinculadas ao usuário.
 Se ainda não fez isso, configure suas credenciais AWS:
 
 powershell
-Copiar
-Editar
+
 aws configure
 2️⃣ Inicializar o Terraform
 Antes de criar os recursos na AWS, execute:
 
 powershell
-Copiar
-Editar
+
 cd infra
 terraform init
 Isso fará o download dos plugins necessários.
@@ -89,8 +82,7 @@ Isso fará o download dos plugins necessários.
 Agora, rode o Terraform para provisionar os recursos:
 
 powershell
-Copiar
-Editar
+
 terraform apply -auto-approve
 📌 Após a execução, a URL do API Gateway será exibida no final do terminal.
 
@@ -98,16 +90,14 @@ terraform apply -auto-approve
 Agora, com a infraestrutura criada, teste a API com um POST:
 
 powershell
-Copiar
-Editar
+
 curl -X POST https://SEU_API_ID.execute-api.us-east-1.amazonaws.com/prod/feedback `
 -H "Content-Type: application/json" `
 -d "{ \"usuario\": \"Maria\", \"mensagem\": \"Ótimo serviço!\", \"data\": \"2025-03-14\" }"
 Ou, se estiver usando o arquivo test-api.http, basta rodar:
 
 powershell
-Copiar
-Editar
+
 code test-api.http
 E enviar a requisição pelo VS Code.
 
@@ -115,8 +105,7 @@ E enviar a requisição pelo VS Code.
 Para visualizar os feedbacks salvos, rode:
 
 powershell
-Copiar
-Editar
+
 aws dynamodb scan --table-name Feedbacks
 Isso listará todos os itens armazenados no DynamoDB.
 
@@ -130,8 +119,7 @@ Isso listará todos os itens armazenados no DynamoDB.
 Caso queira remover toda a infraestrutura provisionada:
 
 powershell
-Copiar
-Editar
+
 terraform destroy -auto-approve
 Isso apagará todos os recursos criados na AWS.
 
