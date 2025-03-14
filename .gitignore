@@ -1,0 +1,23 @@
+# Arquivos do Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+# Arquivos compilados e logs
+*.zip
+*.log
+*.msi
+
+# Credenciais Sensíveis (NUNCA COMMITAR!)
+*.aws/
+.aws/
+aws_credentials.json
+
+# Arquivos temporários
+__pycache__/
+*.swp
+*.bak
+
+# Diagramas e arquivos auxiliares
+*.drawio
