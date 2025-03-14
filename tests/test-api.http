@@ -1,0 +1,12 @@
+### Teste de Cadastro de Feedback (POST)
+POST https://085hwe6zyg.execute-api.us-east-1.amazonaws.com/prod/feedback
+Content-Type: application/json
+
+{
+    "usuario": "Maria",
+    "mensagem": "Muito bom!",
+    "data": "2025-03-14"
+}
+
+### Teste de Consulta de Feedbacks (GET)
+GET https://085hwe6zyg.execute-api.us-east-1.amazonaws.com/prod/feedback
