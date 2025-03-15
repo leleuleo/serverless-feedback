@@ -21,7 +21,7 @@ resource "aws_iam_policy" "lambda_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action   = "dynamodb:PutItem"
+        Action   = ["dynamodb:PutItem", "dynamodb:Scan"]  # ✅ Adicionamos dynamodb:Scan
         Effect   = "Allow"
         Resource = aws_dynamodb_table.feedback_table.arn
       },
@@ -40,7 +40,7 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attach" {
 }
 
 resource "aws_lambda_function" "feedback_lambda" {
-  filename         = "lambda.zip"
+  filename         = "../lambda/lambda.zip"
   function_name    = "feedback_lambda"
   role             = aws_iam_role.lambda_role.arn
   handler          = "lambda_function.lambda_handler"
